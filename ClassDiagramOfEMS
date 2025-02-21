@@ -1,0 +1,89 @@
+@startuml
+
+' Define the Employee class
+class Employee {
+  - employeeID: int
+  - name: string
+  - email: string
+  - phone: string
+  - hireDate: Date
+  - position: string
+  - salary: double
+  - departmentID: int
+  - managerID: int
+  - hireStatus: bool
+  + getEmployeeInfo(): string
+  + updateSalary(newSalary: double): void
+  + requestLeave(leave: Leave): void
+  + assignToDepartment(departmentID: int): void
+  + updateEmployeeInfo(): void
+}
+
+' Define the Department class
+class Department {
+  - departmentID: int
+  - departmentName: string
+  - location: string
+  - managerID: int
+  - budget: double
+  - numEmployees: int
+  + addDepartment(): void
+  + removeDepartment(): void
+  + getDepartmentDetails(): string
+}
+
+' Define the Leave class
+class Leave {
+  - leaveID: int
+  - leaveType: string
+  - leaveDate: Date
+  - startDate: Date
+  - endDate: Date
+  - leaveStatus: string
+  - employeeID: int
+  + applyLeave(): void
+  + approveLeave(): void
+}
+
+' Define the Attendance class
+class Attendance {
+  - attendanceID: int
+  - employeeID: int
+  - checkInTime: Date
+  - checkOutTime: Date
+  - date: Date
+  - status: string
+  + markAttendance(): void
+  + getAttendanceDetails(): string
+}
+
+' Define the Payroll class
+class Payroll {
+  - payrollID: int
+  - employeeID: int
+  - basicSalary: double
+  - bonuses: double
+  - deductions: double
+  - totalSalary: double
+  + generatePayslip(): void
+}
+
+' Define the Performance class
+class Performance {
+  - performanceID: int
+  - employeeID: int
+  - reviewDate: Date
+  - rating: double
+  - comments: string
+  + addPerformanceReview(): void
+  + getPerformanceDetails(): string
+}
+
+' Relationships between classes
+Employee "1" -- "*" Department : assigned to
+Employee "1" -- "*" Leave : applies for
+Employee "1" -- "*" Attendance : marks
+Employee "1" -- "1" Payroll : generates
+Employee "1" -- "*" Performance : reviewed in
+
+@enduml
